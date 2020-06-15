@@ -1,0 +1,35 @@
+server:
+  port: 8011
+
+spring:
+  application:
+    name: ZuulServer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8010/eureka/
+
+#
+#api:
+#  login:
+#    url:
+#      path: /userservice/api/auth/login
+#
+#  me:
+#    url:
+#      path: /userservice/api/user/me.
+#
+#
+#authorization:
+#  token:
+#    header:
+#      name: Authorization
+#      prefix: Bearer
+
+zuul:
+  routes:
+    userservice:
+      path: /userservice/**
+      serviceId: userservice
+      sensitive-headers: Cookie, Set-Cookie
